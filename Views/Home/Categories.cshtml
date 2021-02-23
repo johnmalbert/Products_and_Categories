@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@* ViewBag.AllCategories = _context.Category.ToList(); *@
+@using ProdsAndCats.Models
+@model Category
+<div class="text-center">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col border-right">
+        <h1 class="display-4 text-right">CATEGORIES</h1>
+            <h3 class="mt-5 mb-3">New Category</h3>
+            <form asp-action="NewCategory" method="post">
+                <div class='form-group'>
+                    <span asp-validation-for='Name' style="color: red;"></span>
+                    <label asp-for='Name'></label>
+                    <input class='form-control' asp-for='Name' placeholder='Enter category name'>
+                </div> 
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col">
+        <h1 class="display-4 d-inline border-right text-left"><a href="products">PRODUCTS</a></h1>
+            <h3 class="mt-5 mb-3">Existing Categories</h3>
+            <div style="max-height: 75%; overflow: auto">
+                <ul>
+                    @foreach (var item in @ViewBag.AllCategories)
+                    {
+                        <li><h3><a href="categories/@item.CategoryId">@item.Name</a></h3></li>
+                    }
+                </ul>
+                <h3></h3>
+            </div>
+        </div>
+    </div>
+</div>

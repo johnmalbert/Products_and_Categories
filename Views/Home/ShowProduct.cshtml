@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*  @ViewBag.ThisProduct = _context.Products *@
+<div class="text-center">
+    <h1 class="display-4">@ViewBag.ThisProduct.Name</h1>
+</div>
+<div class="container p-5 m-5 border">
+    <div class="row">
+        <div class="col">
+            <h3 class="m-3"> Categories</h3>
+        <ul>
+            @foreach (var item in @ViewBag.Associations)
+            {
+                <li><h3><a href="/categories/@item.CategoryId">@item.Category.Name</a></h3></li>
+            }
+        </ul>
+        </div>
+        <div class="col">
+            @* add partial here *@
+            <partial name="AddCategoryPartial" />
+        </div>
+    </div>
+</div>

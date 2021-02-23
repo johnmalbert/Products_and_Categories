@@ -1,0 +1,16 @@
+@model Association;
+<h3 class="m-3">Add a Product</h3>
+<form action="/categories/addproduct" method="post">
+    <div class='form-group'>
+        <input type="hidden" name="CategoryId" value="@ViewBag.ThisCategory.CategoryId">
+        <label for="ProductId">Select Category</label>
+        <select name="ProductId" class="form-control">
+            @foreach (var item in @ViewBag.ProductsNotIncluded)
+            {
+                <option value="@item.ProductID">@item.Name</option>
+            }
+        </select>
+        <br>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </div>
+</form>

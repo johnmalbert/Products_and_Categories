@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@using ProdsAndCats.Models
+@model Product
+<div class="text-center">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col border-right">
+        <h1 class="display-4 text-right">PRODUCTS</h1>
+            <h3 class="mt-5 mb-3">New Product</h3>
+            <form asp-action="NewProduct" method="post">
+                <div class='form-group'>
+                    <span asp-validation-for='Name' style="color: red;"></span>
+                    <label asp-for='Name'></label>
+                    <input class='form-control' asp-for='Name' placeholder='Enter product name'>
+                </div> 
+                <div class='form-group'>
+                    <span asp-validation-for='Price' style="color: red;"></span>
+                    <label asp-for='Price'></label>
+                    <input type="number" class='form-control' asp-for='Price' placeholder='Enter a dollar value'>
+                </div> 
+                <div class='form-group'>
+                    <span asp-validation-for='Description'></span>
+                    <label asp-for='Description'></label>
+                    <input class='form-control' asp-for='Description' placeholder='Enter product description'>
+                </div> 
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col">
+        <h1 class="display-4 d-inline border-right text-left"><a href="categories">CATEGORIES</a></h1>
+            <h3 class="mt-5 mb-3">Existing Products</h3>
+            <div style="max-height: 75%; overflow: auto">
+                <ul>
+                    @foreach (var item in @ViewBag.AllProducts)
+                    {
+                        <li><h3><a href="products/@item.ProductID">@item.Name</a></h3></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
